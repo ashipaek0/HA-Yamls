@@ -1,0 +1,574 @@
+views:
+  - type: sections
+    sections:
+      - type: grid
+        cards:
+          - show_current: true
+            show_forecast: false
+            type: weather-forecast
+            entity: weather.forecast_home
+            forecast_type: daily
+            name: Weather
+            secondary_info_attribute: humidity
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: sensor.t_h_sensor_temperature
+            name: Indoor Temp
+            show_state: true
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: sensor.t_h_sensor_humidity
+            name: Indoor Humidity
+            show_state: true
+            theme: Animated Weather Card
+          - type: entities
+            entities:
+              - entity: person.ashipaek0
+              - entity: sensor.pixel_7_pro_battery_level_2
+                name: Phone Battery
+              - entity: binary_sensor.pixel_7_pro_android_auto_2
+                name: Driving
+              - entity: sensor.pixel_7_pro_ringer_mode
+                name: Phone Ringer
+              - entity: sensor.pixel_7_pro_steps_sensor_2
+                name: Steps
+            state_color: true
+      - type: grid
+        cards:
+          - type: custom:power-distribution-card
+            title: ''
+            entities:
+              - decimals: 2
+                display_abs: true
+                name: battery
+                unit_of_display: W
+                consumer: true
+                icon: mdi:battery-outline
+                producer: true
+                entity: sensor.total_battery_power
+                preset: battery
+                invert_value: true
+              - decimals: 2
+                display_abs: true
+                name: grid
+                unit_of_display: W
+                icon: mdi:transmission-tower
+                entity: sensor.grid_meter_power
+                preset: grid
+              - decimals: 2
+                display_abs: true
+                name: solar
+                unit_of_display: W
+                icon: mdi:solar-power
+                producer: true
+                entity: sensor.srne_v2_pv_power
+                preset: solar
+              - decimals: 2
+                display_abs: true
+                name: home
+                unit_of_display: W
+                consumer: true
+                icon: mdi:home-assistant
+                entity: sensor.srne_v2_load_power
+                preset: home
+                invert_value: true
+            center:
+              type: bars
+              content: []
+            animation: slide
+          - square: true
+            type: grid
+            cards:
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.grid_meter_socket_1
+                name: PHCN
+                icon: mdi:transmission-tower-export
+                show_state: true
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.bedroom_tv_socket_1
+                name: Room
+                icon: mdi:power-socket-uk
+                show_state: true
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.freezer_socket_1
+                name: Freezer
+                icon: mdi:power-socket-uk
+                show_state: true
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.living_room_ac_switch_1
+                name: Living Room
+                icon: mdi:air-conditioner
+                show_state: true
+              - show_name: true
+                show_icon: true
+                type: button
+                tap_action:
+                  action: toggle
+                entity: switch.bedroom_ac_switch_1
+                icon: mdi:air-conditioner
+                show_state: true
+                name: Bedroom
+      - type: grid
+        cards:
+          - square: false
+            type: grid
+            columns: 1
+            cards:
+              - type: entities
+                entities:
+                  - entity: remote.onn_4k_streaming_box
+                    name: Android TV
+                    secondary_info: none
+                  - entity: media_player.coreelec
+                    name: Kodi
+                    secondary_info: none
+              - type: media-control
+                entity: media_player.onn_4k_streaming_box
+                theme: amoled
+      - type: grid
+        cards: []
+    max_columns: 4
+    icon: mdi:home
+    cards: []
+  - title: Solar
+    cards:
+      - type: entities
+        entities:
+          - entity: number.srne_v2_max_charge_current_2
+            name: Max charge current
+          - entity: number.srne_v2_max_grid_charge_current_2
+            name: Max grid charge current
+          - entity: select.srne_v2_charger_source_priority_2
+            name: Charger source priority
+          - entity: select.srne_v2_output_source_priority_2
+            name: Output source priority
+          - entity: select.srne_v2_back_to_battery_voltage_2
+            name: Back to battery voltage
+          - entity: select.srne_v2_battery_absorption_charge_voltage_2
+            name: Battery absorption charge voltage
+          - entity: select.srne_v2_battery_float_charge_voltage_2
+            name: Battery float charge voltage
+          - entity: select.srne_v2_shutdown_battery_voltage_2
+            name: Shutdown battery voltage
+          - entity: select.srne_v2_to_grid_battery_voltage_2
+            name: To grid battery voltage
+        title: Inverter
+        state_color: true
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.srne_v2_device_mode_2
+                name: Device mode
+              - entity: sensor.srne_v2_response
+                name: Response
+              - entity: sensor.srne_v2_load_percentage_2
+                name: Load percentage
+              - entity: sensor.srne_v2_load_power_2
+                name: Load power
+              - entity: sensor.srne_v2_load_apparent_power_2
+                name: Load apparent power
+              - entity: sensor.srne_v2_load_energy_2
+                name: Load energy
+              - entity: sensor.srne_v2_grid_power_2
+                name: Grid power
+              - entity: sensor.srne_v2_grid_voltage_2
+                name: Grid voltage
+              - entity: sensor.srne_v2_grid_energy_in_2
+                name: Grid energy in
+              - entity: sensor.srne_v2_grid_energy_out_2
+                name: Grid energy out
+              - entity: sensor.srne_v2_grid_frequency_2
+                name: Grid frequency
+              - entity: sensor.srne_v2_state_of_charge_2
+                name: State of charge
+              - entity: sensor.srne_v2_ac_output_voltage_2
+                name: AC output voltage
+              - entity: sensor.srne_v2_ac_output_frequency_2
+                name: AC output frequency
+              - entity: sensor.srne_v2_bus_voltage_2
+                name: Bus voltage
+            title: Inverter
+    icon: mdi:select-inverse
+  - type: sections
+    sections:
+      - type: grid
+        cards:
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.forecast_home
+            forecast_type: daily
+            name: Weather
+            secondary_info_attribute: humidity
+          - type: entities
+            entities:
+              - entity: sensor.energy_next_hour
+                name: next hour
+              - entity: sensor.energy_production_today_remaining
+                name: remaining today
+              - entity: sensor.energy_current_hour
+                name: this hour
+              - entity: sensor.energy_production_today
+                name: today
+              - entity: sensor.energy_production_tomorrow
+                name: tomorrow
+              - entity: sensor.power_production_now
+                name: ' now'
+              - entity: sensor.power_highest_peak_time_today
+                name: peak time - today
+              - entity: sensor.power_highest_peak_time_tomorrow
+                name: peak time - tomorrow
+            title: Solar production forecast
+        title: Environment
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.srne_v2_pv_voltage
+            name: Voltage
+            min: 0
+            max: 240
+            severity:
+              green: 120
+              yellow: 60
+              red: 0
+          - type: gauge
+            entity: sensor.srne_v2_pv_current
+            name: Current
+            min: 0
+            max: 13
+            severity:
+              green: 8
+              yellow: 4
+              red: 0
+          - type: gauge
+            entity: sensor.srne_v2_pv_power
+            name: Power
+            min: 0
+            max: 2740
+            severity:
+              green: 500
+              yellow: 100
+              red: 0
+          - type: gauge
+            entity: sensor.srne_v2_pv_energy
+            name: Energy Today
+            min: 0
+            max: 12
+            severity:
+              green: 6
+              yellow: 2
+              red: 0
+        title: Panels Output
+      - type: grid
+        cards:
+          - chart_type: line
+            period: 5minute
+            type: statistics-graph
+            entities:
+              - sensor.srne_v2_pv_power
+            stat_types:
+              - max
+            days_to_show: 1
+            title: Power
+            hide_legend: true
+          - chart_type: line
+            period: 5minute
+            type: statistics-graph
+            entities:
+              - sensor.srne_v2_pv_voltage
+            stat_types:
+              - max
+            title: Voltage
+            days_to_show: 1
+            hide_legend: true
+          - chart_type: line
+            period: 5minute
+            type: statistics-graph
+            entities:
+              - sensor.srne_v2_pv_current
+            stat_types:
+              - max
+            title: Current
+            days_to_show: 1
+            hide_legend: true
+        title: Charts
+      - type: grid
+        cards:
+          - chart_type: bar
+            period: day
+            type: statistics-graph
+            entities:
+              - sensor.srne_v2_pv_energy
+            stat_types:
+              - state
+            days_to_show: 7
+            hide_legend: true
+            logarithmic_scale: true
+          - type: statistic
+            entity: sensor.srne_v2_pv_energy
+            period:
+              calendar:
+                period: day
+            stat_type: change
+            name: Today
+          - type: statistic
+            entity: sensor.srne_v2_pv_energy
+            period:
+              calendar:
+                period: week
+            stat_type: change
+            name: This Week
+            icon: mdi:solar-power
+          - type: statistic
+            entity: sensor.srne_v2_pv_energy
+            period:
+              calendar:
+                period: month
+            stat_type: change
+            icon: mdi:solar-power-variant
+            name: This Month
+          - type: statistic
+            entity: sensor.srne_v2_pv_energy
+            period:
+              calendar:
+                period: year
+            stat_type: change
+            icon: mdi:solar-power-variant-outline
+            name: This Year (6 Weeks)
+        title: Energy
+    max_columns: 4
+    icon: mdi:solar-panel-large
+    cards: []
+    theme: Google Dark Theme
+  - title: PHCN
+    path: phcn
+    icon: mdi:transmission-tower-export
+    cards:
+      - type: vertical-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: switch.grid_meter_socket_1
+            name: IKEDC
+            show_state: false
+            icon_height: 215px
+            icon: mdi:transmission-tower-export
+          - type: entities
+            entities:
+              - entity: sensor.grid_meter_power
+                name: Power
+              - entity: sensor.grid_meter_current
+                name: Current
+              - entity: sensor.grid_meter_voltage
+                name: Voltage
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.daily_grid_on
+                name: Today
+                secondary_info: none
+              - entity: sensor.weekly_grid_on
+                name: This Week
+                secondary_info: none
+              - entity: sensor.monthly_grid_on
+                name: This Month
+                secondary_info: none
+              - entity: sensor.yearly_grid_on
+                name: This Year
+                secondary_info: none
+            title: Grid Supply (H:MM:SS)
+          - chart_type: bar
+            period: day
+            type: statistics-graph
+            entities:
+              - sensor.daily_grid_on
+            stat_types:
+              - state
+            days_to_show: 7
+            hide_legend: true
+  - icon: mdi:car-battery
+    path: battery
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: gauge
+                entity: sensor.average_battery_soc
+                name: SOC
+                min: 0
+                max: 100
+                severity:
+                  green: 70
+                  yellow: 30
+                  red: 0
+                theme: Fluent Blue
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: gauge
+                entity: sensor.average_battery_voltage
+                name: Voltage
+                min: 24
+                max: 29
+                severity:
+                  green: 26.7
+                  yellow: 25
+                  red: 23.5
+                theme: Fluent Blue
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: gauge
+                entity: sensor.total_battery_charge
+                name: Capacity
+                min: 0
+                max: 435
+                severity:
+                  green: 217.5
+                  yellow: 108.75
+                  red: 0
+                theme: Fluent Blue
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: gauge
+                entity: sensor.total_battery_power
+                name: Power
+                min: 0
+                severity:
+                  green: 300
+                  yellow: 100
+                  red: 0
+                theme: Fluent Blue
+                max: 4000
+      - type: vertical-stack
+        cards:
+          - type: gauge
+            entity: sensor.total_battery_current
+            name: Current
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 30
+              red: 50
+            theme: Fluent Blue
+      - chart_type: line
+        period: hour
+        type: statistics-graph
+        entities:
+          - sensor.300ah_voltage
+          - sensor.135ah_voltage
+        stat_types:
+          - mean
+        days_to_show: 1
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: switch.300ah_charge
+              - entity: switch.300ah_discharge
+            title: 300Ah BMS Switch
+            theme: Fluent Purple
+          - type: entities
+            entities:
+              - entity: switch.135ah_charge
+              - entity: switch.135ah_discharge
+            title: 135Ah BMS Switch
+            theme: Fluent Green
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.300ah_cell_volt_average
+                name: Average
+              - entity: sensor.300ah_cell_volt_1
+                name: Cell 1
+              - entity: sensor.300ah_cell_volt_2
+                name: Cell 2
+              - entity: sensor.300ah_cell_volt_3
+                name: Cell 3
+              - entity: sensor.300ah_cell_volt_4
+                name: Cell 4
+              - entity: sensor.300ah_cell_volt_5
+                name: Cell 5
+              - entity: sensor.300ah_cell_volt_6
+                name: Cell 6
+              - entity: sensor.300ah_cell_volt_7
+                name: Cell 7
+              - entity: sensor.300ah_cell_volt_8
+                name: Cell 8
+            title: 300Ah Pack
+            theme: Fluent Purple
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.135ah_cell_volt_average
+                name: Average
+              - entity: sensor.135ah_cell_volt_1
+                name: Cell 1
+              - entity: sensor.135ah_cell_volt_2
+                name: Cell 2
+              - entity: sensor.135ah_cell_volt_3
+                name: Cell 3
+              - entity: sensor.135ah_cell_volt_4
+                name: Cell 4
+              - entity: sensor.135ah_cell_volt_5
+                name: Cell 5
+              - entity: sensor.135ah_cell_volt_6
+                name: Cell 6
+              - entity: sensor.135ah_cell_volt_7
+                name: Cell 7
+              - entity: sensor.135ah_cell_volt_8
+                name: Cell 8
+            title: 135Ah Pack
+            theme: Fluent Green
+  - type: panel
+    cards:
+      - chart_type: line
+        period: 5minute
+        type: statistics-graph
+        entities:
+          - sensor.srne_v2_power
+          - sensor.grid_meter_power
+          - sensor.srne_v2_load_power
+          - sensor.total_battery_power
+        stat_types:
+          - max
+        days_to_show: 1
+        hide_legend: false
+        logarithmic_scale: true
+    title: Graphs
+title: Solar Dashboard
